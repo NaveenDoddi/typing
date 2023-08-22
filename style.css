@@ -1,13 +1,15 @@
-/* input{
+input{
     border: none;
-    color: white;
-} */
+    outline: none
+    /* color: white; */
+}
 #WPM, #accurecy{
     visibility: hidden;
 }
 body{
     background-color: black;
 }
+
 .displayElements{
     padding: 0.5%;
     font-size: large;

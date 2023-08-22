@@ -20,28 +20,22 @@ function keypressed(event){
         event.preventDefault()
     }
     if(event.key === " " && bool){
-        run1()
+        run()
     }
 }
 
 
 function run(){
-    if(count == 0){start()}
 
-    var current = document.getElementById("input").value
-    document.getElementById("result").append(current[count])
+    if(count1 == 0){start()}
 
-    count++
-    
-}
-
-function run1(){
     document.getElementsByTagName("span")[count1+1].style.color = "lightblue"
     
-    var input = document.getElementById("result").innerText
+    var input = document.getElementById("input").value
 
     var span = document.createElement("span")
     span.innerText = input
+    input = input.split(" ").join("")
 
     if(text[count1] == input){
         WPM++
@@ -49,10 +43,11 @@ function run1(){
         wrongWords++
         span.style.color = "red"
     }
+
     document.getElementById("mainresult").append(span)
     document.getElementById("mainresult").append(" ")
 
-    document.getElementById("result").innerText = " "
+    document.getElementById("input").value = ""
     document.getElementsByTagName("span")[count1].style.color = "black"
     count1++
 
@@ -62,14 +57,24 @@ function run1(){
 function start(){
     
     setTimeout(() => {
-        run1()
-        var div2 = document.getElementById("accurecy")
+        run()
 
+        var div2 = document.getElementById("accurecy")
         var div1 = document.getElementById("WPM")
+
         div1.style.visibility = "visible"
         div2.style.visibility = "visible"
+
         div1.innerText = WPM + " WPM"
         div2.innerText = (WPM/count1)*100 + " accurecy"
-
+        document.getElementById("input").style.display = "none"
+        
     }, 5000);
+    var sec = 59
+    setInterval(seconds=()=>{
+        
+        document.getElementById("time").innerText = sec
+        sec--
+        
+    }, 1000);
 }
