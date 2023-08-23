@@ -1,8 +1,9 @@
 input{
     border: none;
     outline: none;
-    width: 200px
-    /* color: white; */
+    width: 200px;
+    color: yellowgreen;
+    
 }
 #totalTyped,#WPM, #accurecy{
     visibility: hidden;
@@ -46,8 +47,13 @@ input{
     height: 285px;
     border: 2px solid black;
     overflow: auto;
+    text-align: justify;
 }
 
 #displayPara::-webkit-scrollbar,#inputField::-webkit-scrollbar {
     display: none;
+}
+
+h1{
+    text-decoration: underline;
 }
