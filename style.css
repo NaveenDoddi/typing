@@ -1,9 +1,13 @@
-input{
+#input{
     border: none;
     outline: none;
     width: 200px;
     color: yellowgreen;
     
+}
+input{
+    width: 155px;
+
 }
 #totalTyped,#WPM, #accurecy{
     visibility: hidden;
@@ -17,12 +21,11 @@ input{
     
 }
 
-#left{
-    
+/* #left{
     display: flex;
     justify-content: center;    
     align-items: center;
-}
+} */
 .displayElements,.typedElements,#input{
     padding: 0.5%;
     font-size: xx-large;

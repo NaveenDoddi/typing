@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
@@ -14,6 +16,22 @@
         <h2 class="text-center">Check your typing skills in a minute</h2>
         <div id="complete">
             <div id="left">
+                <div>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>1 Minute</option>
+                        <option value="2 Minute">2 Minutes</option>
+                        <option value="3 Minute">3 Minutes</option>
+                        <option value="5 Minute">5 Minutes</option>
+                        <option value="10 Minute">10 Minutes</option>
+                    </select>
+                </div>
+                <div>
+                    <select class="form-select" aria-label="Default select example">
+                        <option value="Easy">Easy</option>
+                        <option selected value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                </div>
                 <div id="time"> 60 seconds</div>
             </div>
 
@@ -31,10 +49,8 @@
                 <div id="accurecy"></div>
             </div>
         </div>
-
         
     </div>
-    
 
 </body>
     <script src="script.js"></script>
