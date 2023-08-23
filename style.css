@@ -1,21 +1,53 @@
 input{
     border: none;
-    outline: none
+    outline: none;
+    width: 200px
     /* color: white; */
 }
-#WPM, #accurecy{
+#totalTyped,#WPM, #accurecy{
     visibility: hidden;
-}
-body{
-    background-color: black;
+    
+    height: 33.3%;
+    border: 1px solid black;
+
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+    
 }
 
-.displayElements{
+#left{
+    
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+}
+.displayElements,.typedElements,#input{
     padding: 0.5%;
-    font-size: large;
+    font-size: xx-large;
 
 }
-#para{
-    padding: 5%;
+#left, #right{
+    width: 20%;
     border: 2px solid black;
+}
+#center{
+    width: 60%;
+}
+#mainDiv{
+    padding: 2%;
+}
+#complete{
+    display: flex;
+}
+#displayPara,#inputField{
+    padding: 4%;
+    /* width: 800px; */
+    height: 285px;
+    border: 2px solid black;
+    overflow: auto;
+}
+
+#displayPara::-webkit-scrollbar,#inputField::-webkit-scrollbar {
+    display: none;
 }
