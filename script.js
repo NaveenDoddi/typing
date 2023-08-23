@@ -113,7 +113,7 @@ function start(){
         clearInterval(timer);
         document.getElementById("time").innerText = "Time's up!";
 
-    }, 10000);
+    }, 60000);
 
 }
 function scroll() {
