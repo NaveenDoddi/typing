@@ -173,8 +173,8 @@ function run(){
 function start(){
 
     // Seconds = minutes*60
-    var timeout = minutes * 60400
-    // var timeout = 10000
+    // var timeout = minutes * 60400
+    var timeout = 1000
     setTimeout(() => {
         // run()
 
@@ -192,6 +192,9 @@ function start(){
         div2.innerText = "WPM " + WPM / minutes
         div3.innerText =  "Accurecy " + Math.floor((WPM/count1)*100) 
         div4.innerText =  "Typos " + wrongWords
+
+        //seseion storage
+
         document.getElementById("input").style.display = "none"
 
         clearInterval(timer);

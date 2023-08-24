@@ -13,14 +13,21 @@ input{
 #totalTyped,#WPM, #accurecy, #typos{
 
     visibility: hidden;
-    
-    height: 25%;
     border: 1px solid black;
+    height: 67px;
+
 
     display: flex;
     justify-content: center;    
     align-items: center;
     
+}
+ #resultDiv{
+    position: relative;
+    top: 0%;
+ }
+.progress{
+    padding: 10px;
 }
 
 /* #left{
@@ -39,7 +46,7 @@ input{
     flex-direction: column;
     justify-content: center;    
     /* align-items: center; */
-    height: 79%
+    height: 100%;
 }
 #left, #right{
     width: 20%;
@@ -49,7 +56,7 @@ input{
     width: 60%;
 }
 #mainDiv{
-    padding: 2%;
+    padding: 1%;
 }
 #complete{
     display: flex;
@@ -57,7 +64,7 @@ input{
 #displayPara,#inputField{
     padding: 4%;
     /* width: 800px; */
-    height: 285px;
+    height: 310px;
     border: 2px solid black;
     overflow: auto;
     text-align:justify
@@ -68,6 +75,9 @@ input{
 
 #displayPara::-webkit-scrollbar,#inputField::-webkit-scrollbar {
     display: none;
+}
+h5{
+    text-align: center;
 }
 
 h1{

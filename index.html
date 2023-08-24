@@ -17,13 +17,15 @@
         <div id="complete">
             <div id="left">
                 <div id="stopwatch">
-                    <p style="background-color: orange;">Timer</p>
-                    <button class="btn btn-lg">00 :</button>
+                    <h5 style="background-color: orange;">Timer</h5>
+                    <!-- <button class="btn btn-lg">00 :</button> -->
                     <button class="btn btn-lg" id="displayMinutes">00 :</button>
                     <button class="btn btn-lg" id="displaySeconds">60</button>
                     <button class="btn btn-lg btn-danger invisible " id="timeUp"></button>
                 </div>
+                
                 <div id="selectLevel">
+                    <h5 style="background-color: orange;">select text</h5>
                     <div onchange="loadContent()">
                         <select class="form-select bg-info" aria-label="Default select example">
                             <option selected>1 Minute</option>
@@ -53,10 +55,35 @@
             </div>
 
             <div id="right">
-                <div class="bg-info text-white" id="totalTyped"></div>
-                <div class="bg-success text-white" id="WPM"></div>
-                <div class="bg-danger text-white" id="typos"></div>
-                <div class="bg-warning text-dark" id="accurecy"></div>
+
+                <div id="resultDiv" class="w-100 bottom-0">
+                    <h5 style="background-color: orange;">result</h5>
+                    <div class="bg-info text-white" id="totalTyped"></div>
+                    <div class="bg-success text-white" id="WPM"></div>
+                    <div class="bg-danger text-white" id="typos"></div>
+                    <div class="bg-warning text-dark" id="accurecy"></div>
+                </div>
+
+                <div id="progressBarDiv">
+                    <h5 style="background-color: orange;">your history</h5>                    <div class="progress" style="height: 50px;">
+                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25</div>
+                    </div>
+                    <div class="progress" style="height: 50px;">
+                        <div class="progress-bar" role="progressbar" style="width: 35%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">35</div>
+                    </div>
+                    <div class="progress" style="height: 50px;">
+                        <div class="progress-bar" role="progressbar" style="width: 45%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">45</div>
+                    </div>
+                    <div class="progress" style="height: 50px;">
+                        <div class="progress-bar" role="progressbar" style="width: 55%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">55</div>
+                    </div>
+                    <div class="progress" style="height: 50px;">
+                        <div class="progress-bar" role="progressbar" style="width: 20%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">20</div>
+                    </div>
+                    
+                </div>
+                
+                
             </div>
         </div>
         
