@@ -93,6 +93,7 @@ h1{
 }
 #timeUp{
     visibility: hidden;
+    position: relative;
 }
 
 #displayMinutes, #displaySeconds{

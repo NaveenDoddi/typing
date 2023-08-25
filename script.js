@@ -195,7 +195,6 @@ function run(){
 
 function start(){
 
-    // Seconds = minutes*60
     // var timeout = minutes * 60400
     var timeout = 5000
     setTimeout(() => {
@@ -251,16 +250,9 @@ function startTimer() {
  
 }
 
-
-
-console.log(JSON.parse(localStorage.getItem("typingHistory")) == null)
-if(JSON.parse(localStorage.getItem("typingHistory")) == null){
-    // localStorage.setItem('typingHistory', JSON.stringify([0,0,0,0,0,0]));
-}else{
+if(JSON.parse(localStorage.getItem("typingHistory")) != null){
     displayBar()
 }
-
-
 
 function createBars(){
     const now = new Date();
