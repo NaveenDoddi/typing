@@ -2,6 +2,7 @@
 var array =  [
     [
         "The sun did not shine. It was too wet to play. So we sat in the house all that cold, cold, wet day. I sat there with Sally. We sat there, we two. And I said, 'How I wish we had something to do!'",
+        "The cat sat on the mat. It looked so content and relaxed. Its fur was soft and fluffy, a mix of gray and white. It lazily blinked its eyes as if it had not a care in the world. The mat felt warm under the afternoon sun.",
         "Two roads diverged in a wood, and I took the one less traveled by, And that has made all the difference. And both that morning equally lay In leaves no step had trodden black.Nulla facilisi. Sed tincidunt vulputate eleifend. Maecenas quis congue justo",
         "Praesent varius justo sed ex interdum, a ultrices velit commodo. Vestibulum facilisis nulla non aliquam. Nulla facilisi. Sed tincidunt vulputate eleifend. Maecenas quis congue justo.Nulla facilisi. Sed tincidunt vulputate eleifend. Maecenas quis congue justo",
     ],
@@ -22,7 +23,6 @@ var array =  [
     ],
 ]
 
-
 var minutes = 1
 var level = "Medium"
 var text = ""
@@ -39,7 +39,11 @@ let timer // seconds function
 
 
 function loadContent(){
+
     document.getElementById("displayPara").innerHTML = ""
+    document.getElementById("mainResult").innerHTML = ""
+    document.getElementById("input").style.visibility = "visible"
+    document.getElementById("input").value = ""
     var levelDigit = 0
     var testDificulty = 0
     var options = document.getElementsByTagName("option")
@@ -75,7 +79,7 @@ function loadContent(){
     if(level == "Easy"){
         testDificulty = 0
     }else if( level == "Medium"){
-        testDificulty = 1
+        testDificulty = Math.floor(Math.random() * 2) + 1
     }else{
         testDificulty = 2
     }
@@ -93,9 +97,22 @@ function loadContent(){
         document.getElementById("displayPara").append(span)
         
     }
+
     document.getElementById("displayMinutes").innerText = minutes-1 + " :"
 
-    console.log(text)
+    document.getElementById("totalTyped").style.visibility = "hidden"
+    document.getElementById("accurecy").style.visibility = "hidden"
+    document.getElementById("WPM").style.visibility = "hidden"
+    document.getElementById("typos").style.visibility = "hidden"
+    document.getElementById("timeUp").style.visibility = "hidden"
+    document.getElementById("displaySeconds").style.backgroundColor = "white"
+    document.getElementById("displaySeconds").innerText = "60"
+
+    count1 = 0
+    count = 0
+    wrongWords = 0
+    WPM = 0
+
     
 }
 
@@ -114,6 +131,10 @@ function run1(){
     if(count == 0){
         start()
         startTimer()
+        document.getElementById("timeUp").innerText = "test has been Ended"
+        document.getElementById("timeUp").addEventListener
+
+
     }
 
     var currentWord = document.getElementById("input").value
@@ -144,11 +165,10 @@ function run(){
     }else{
         if(text[count1].toString().length > input.length){
             span.style.width = widthofSpan+"px"
-            console.log("less")
         }else{
             
         }
-        wrongWords++
+        // wrongWords++
         span.style.color = "red"
     }
 
@@ -165,7 +185,10 @@ function run(){
     document.getElementById("input").value = ""
     document.getElementsByTagName("span")[count1].style.color = "black"
 
-    count1++
+    if(input){
+        count1++
+    }
+
     bool = false
     
 }
@@ -174,9 +197,9 @@ function start(){
 
     // Seconds = minutes*60
     // var timeout = minutes * 60400
-    var timeout = 1000
+    var timeout = 5000
     setTimeout(() => {
-        // run()
+        run()
 
         var div1 = document.getElementById("totalTyped")
         var div3 = document.getElementById("accurecy")
@@ -191,16 +214,15 @@ function start(){
         div1.innerText = "Total Typed " + count1
         div2.innerText = "WPM " + WPM / minutes
         div3.innerText =  "Accurecy " + Math.floor((WPM/count1)*100) 
-        div4.innerText =  "Typos " + wrongWords
+        div4.innerText =  "Typos " + (count1 - WPM)
+        
+        createBars()
+        clearInterval(timer)
 
-        //seseion storage
-
-        document.getElementById("input").style.display = "none"
-
-        clearInterval(timer);
-
+        document.getElementById("displaySeconds").innerText = "0"
         document.getElementById("timeUp").style.visibility = "visible"
-        document.getElementById("timeUp").innerText = "Time's up!";
+        document.getElementById("startBtn").style.visibility = "visible"
+        document.getElementById("input").style.visibility = "hidden"
 
     }, timeout);
 
@@ -214,11 +236,15 @@ function scroll() {
 function startTimer() {
 
     timer = setInterval(() => {
-        document.getElementById("displaySeconds").innerText = Seconds;
-        document.getElementById("displayMinutes").innerText ="0" + minutes - 1 + " :";
+        document.getElementById("displaySeconds").innerText = Seconds
+        document.getElementById("displayMinutes").innerText = (minutes - 1)
         if(Seconds==0){
             Seconds = 60
             minutes--
+        }
+        if(minutes == 1 && Seconds < 5){
+            document.getElementById("displaySeconds").className = "bg-danger"
+  
         }
         Seconds--;
     }, 1000);
@@ -226,3 +252,100 @@ function startTimer() {
 }
 
 
+
+console.log(JSON.parse(localStorage.getItem("typingHistory")) == null)
+if(JSON.parse(localStorage.getItem("typingHistory")) == null){
+    // localStorage.setItem('typingHistory', JSON.stringify([0,0,0,0,0,0]));
+}else{
+    displayBar()
+}
+
+
+
+function createBars(){
+    const now = new Date();
+
+    const nowDate = now.toLocaleDateString().split("/").splice(0,2).join("/")
+    const nowTime = now.toLocaleTimeString().split(":").splice(0,2).join(":")
+    const AmPm = now.toLocaleTimeString().split(" ")[1]
+
+    const resultTime = nowDate + ", T " + nowTime + " " + AmPm
+
+    var width = WPM * 2
+    var sub = [WPM,resultTime]
+
+    var div = document.createElement("div")
+    div.id = "progressInnerDiv"
+    div.className = "progress"
+    div.style.height = "45px"
+
+    var div1 = document.createElement("div")
+
+    div1.className = "progress-bar"
+    div1.setAttribute("role","progressbar")
+    div1.setAttribute("aria-valuemin", "0")
+    div1.setAttribute("aria-valuemax", "50")
+
+
+    div1.style.width = width + "%"
+    div1.innerText = WPM
+
+    div.append(div1)
+
+    var span = document.createElement("span")
+    span.innerText = resultTime
+    span.style.marginLeft = "auto"
+
+    div.append(span)
+    document.getElementById("progressBarDiv").append(div)
+
+    if(JSON.parse(localStorage.getItem("typingHistory")) == null){
+        localStorage.setItem('typingHistory', JSON.stringify([]));
+    }
+
+    var arr = JSON.parse(localStorage.getItem("typingHistory"));
+    arr.push(sub)
+
+    localStorage.setItem('typingHistory', JSON.stringify(arr));
+
+}
+
+
+function displayBar(){
+
+    var arr = JSON.parse(localStorage.getItem("typingHistory"));
+
+    for(let i = 0; i < arr.length; i++){
+
+        var width = arr[i][0] * 2
+        
+        var div = document.createElement("div")
+        div.id = "progressInnerDiv"
+        div.className = "progress"
+        div.style.height = "45px"
+    
+        var div1 = document.createElement("div")
+    
+        div1.className = "progress-bar"
+        div1.setAttribute("role","progressbar")
+        div1.setAttribute("aria-valuemin", "0")
+        div1.setAttribute("aria-valuemax", "50")
+    
+    
+        div1.style.width = width + "%"
+        div1.innerText = arr[i][0]
+    
+        div.append(div1)
+    
+        var span = document.createElement("span")
+        span.innerText = arr[i][1]
+        span.style.marginLeft = "auto"
+    
+        div.append(span)
+        document.getElementById("progressBarDiv").append(div)
+        
+
+    }
+    localStorage.setItem('typingHistory', JSON.stringify(arr));
+    
+}
