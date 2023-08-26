@@ -195,8 +195,8 @@ function run(){
 
 function start(){
 
-    // var timeout = minutes * 60400
-    var timeout = 5000
+    var timeout = minutes * 60400
+    // var timeout = 5000
     setTimeout(() => {
         run()
 
