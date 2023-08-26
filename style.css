@@ -118,5 +118,6 @@ h1{
 }
 #progressBarDiv{
     height: 275px;
-    overflow: auto;
+    overflow: scroll;
+    scroll-top
 }

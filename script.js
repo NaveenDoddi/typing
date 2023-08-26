@@ -195,8 +195,8 @@ function run(){
 
 function start(){
 
-    // var timeout = minutes * 60400
-    var timeout = 5000
+    var timeout = minutes * 60400
+    // var timeout = 5000
     setTimeout(() => {
         run()
 
@@ -290,6 +290,8 @@ function createBars(){
 
     div.append(span)
     document.getElementById("progressBarDiv").append(div)
+    document.getElementById("progressBarDiv").scrollTop = document.getElementById("progressBarDiv").scrollHeight
+
 
     if(JSON.parse(localStorage.getItem("typingHistory")) == null){
         localStorage.setItem('typingHistory', JSON.stringify([]));
@@ -335,6 +337,7 @@ function displayBar(){
     
         div.append(span)
         document.getElementById("progressBarDiv").append(div)
+        document.getElementById("progressBarDiv").scrollTop = document.getElementById("progressBarDiv").scrollHeight;
         
 
     }
