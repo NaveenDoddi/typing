@@ -34,7 +34,7 @@ var WPM = 0
 var acc = 0
 var totalTyped = 0
 var letters = 0
-var Seconds = 60
+var Seconds = 59
 let timer // seconds function
 
 
@@ -111,6 +111,8 @@ function loadContent(){
     count1 = 0
     count = 0
     wrongWords = 0
+    letters = 0
+    Seconds = 59
     WPM = 0
 
     
@@ -195,7 +197,7 @@ function run(){
 
 function start(){
 
-    var timeout = minutes * 60400
+    var timeout = minutes * 60200
     // var timeout = 5000
     setTimeout(() => {
         run()
@@ -233,17 +235,19 @@ function scroll() {
 
 
 function startTimer() {
-
+    Seconds = 59
     timer = setInterval(() => {
         document.getElementById("displaySeconds").innerText = Seconds
         document.getElementById("displayMinutes").innerText = (minutes - 1)
-        if(Seconds==0){
-            Seconds = 60
+        if(Seconds == 0){
+            Seconds = 59
             minutes--
         }
         if(minutes == 1 && Seconds < 5){
             document.getElementById("displaySeconds").className = "bg-danger"
-  
+        }else{
+            document.getElementById("displaySeconds").className = "bg-white"
+
         }
         Seconds--;
     }, 1000);
