@@ -114,12 +114,12 @@ function loadContent(){
     letters = 0
     Seconds = 59
     WPM = 0
-
     
 }
 
 
 document.getElementById("input").addEventListener("keydown",keypressed)
+
 function keypressed(event){
     if(event.key === "Backspace"){
         event.preventDefault()
@@ -130,13 +130,13 @@ function keypressed(event){
 }
 
 function run1(){
+
     if(count == 0){
         start()
         startTimer()
         document.getElementById("timeUp").innerText = "test has been Ended"
         document.getElementById("timeUp").addEventListener
-
-
+        
     }
 
     var currentWord = document.getElementById("input").value
@@ -171,6 +171,10 @@ function run(){
             
         }
         // wrongWords++
+
+        document.getElementById("sound").pause()
+        document.getElementById("sound").currentTime = 0.2;
+        document.getElementById("sound").play()
         span.style.color = "red"
     }
 
@@ -202,48 +206,55 @@ function start(){
     setTimeout(() => {
         run()
 
-        var div1 = document.getElementById("totalTyped")
-        var div3 = document.getElementById("accurecy")
-        var div2 = document.getElementById("WPM")
-        var div4 = document.getElementById("typos")
-
-        div1.style.visibility = "visible"
-        div2.style.visibility = "visible"
-        div3.style.visibility = "visible"
-        div4.style.visibility = "visible"
-
-        div1.innerText = "Total Typed " + count1
-        div2.innerText = "WPM " + WPM / minutes
-        div3.innerText =  "Accurecy " + Math.floor((WPM/count1)*100) 
-        div4.innerText =  "Typos " + (count1 - WPM)
-        
+        displayResults()
         createBars()
         clearInterval(timer)
-
-        document.getElementById("displaySeconds").innerText = "0"
-        document.getElementById("timeUp").style.visibility = "visible"
-        document.getElementById("startBtn").style.visibility = "visible"
-        document.getElementById("input").style.visibility = "hidden"
 
     }, timeout);
 
 }
+
+function displayResults(){
+
+    var div1 = document.getElementById("totalTyped")
+    var div3 = document.getElementById("accurecy")
+    var div2 = document.getElementById("WPM")
+    var div4 = document.getElementById("typos")
+
+    div1.style.visibility = "visible"
+    div2.style.visibility = "visible"
+    div3.style.visibility = "visible"
+    div4.style.visibility = "visible"
+
+    div1.innerText = "Total Typed " + count1
+    div2.innerText = "WPM " + (WPM / minutes)
+    div3.innerText =  "Accurecy " + Math.floor((WPM/count1)*100) 
+    div4.innerText =  "Typos " + (count1 - WPM)
+
+    document.getElementById("displaySeconds").innerText = "0"
+    document.getElementById("timeUp").style.visibility = "visible"
+    document.getElementById("startBtn").style.visibility = "visible"
+    document.getElementById("input").style.visibility = "hidden"
+
+}
+
+
 function scroll() {
     var div = document.getElementById("displayPara");
     div.scrollTop += 47;
 }    
 
-
 function startTimer() {
     Seconds = 59
+    var dummyMinutes = minutes
     timer = setInterval(() => {
         document.getElementById("displaySeconds").innerText = Seconds
-        document.getElementById("displayMinutes").innerText = (minutes - 1)
+        document.getElementById("displayMinutes").innerText = (dummyMinutes - 1)
         if(Seconds == 0){
             Seconds = 59
-            minutes--
+            dummyMinutes--
         }
-        if(minutes == 1 && Seconds < 5){
+        if(dummyMinutes == 1 && Seconds < 5){
             document.getElementById("displaySeconds").className = "bg-danger"
         }else{
             document.getElementById("displaySeconds").className = "bg-white"
@@ -268,7 +279,7 @@ function createBars(){
     const resultTime = nowDate + ", T " + nowTime + " " + AmPm
 
     var width = WPM * 2
-    var sub = [WPM,resultTime]
+    var sub = [Math.floor(WPM / minutes), resultTime]
 
     var div = document.createElement("div")
     div.id = "progressInnerDiv"
@@ -284,7 +295,9 @@ function createBars(){
 
 
     div1.style.width = width + "%"
-    div1.innerText = WPM
+    div1.innerText = Math.floor(WPM / minutes)
+
+    console.log(Math.floor(WPM/ minutes), WPM, minutes)
 
     div.append(div1)
 
