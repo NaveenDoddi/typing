@@ -1,9 +1,9 @@
 
 var array =  [
     [
-        "The sun did not shine. It was too wet to play. So we sat in the house all that cold, cold, wet day. I sat there with Sally. We sat there, we two. And I said, 'How I wish we had something to do!'",
-        "The cat sat on the mat. It looked so content and relaxed. Its fur was soft and fluffy, a mix of gray and white. It lazily blinked its eyes as if it had not a care in the world. The mat felt warm under the afternoon sun.",
-        "Two roads diverged in a wood, and I took the one less traveled by, And that has made all the difference. And both that morning equally lay In leaves no step had trodden black.Nulla facilisi. Sed tincidunt vulputate eleifend. Maecenas quis congue justo",
+        "The sun did not shine. It was too wet to play. So we sat in the house all that cold, cold, wet day. I sat there with Sally. We sat there, we two. And I said, 'How I wish we had something to do! Nulla facilisi. Sed tincidunt vulputate eleifend.",
+        "The cat sat on the mat. It looked so content and relaxed. Its fur was soft and fluffy, a mix of gray and white. It lazily blinked its eyes as if it had not a care in the world. The mat felt warm under the afternoon sun.Nulla facilisi. Sed tincidunt vulputate eleifend.",
+        "Two roads diverged in a wood, and I took the one less traveled by, And that has made all the difference. And both that morning equally lay In leaves no step had trodden black. Nulla facilisi. Sed tincidunt vulputate eleifend. Maecenas quis congue justo. The cat sat on the mat. It looked so content and relaxed. Its fur was soft and fluffy, a mix of gray and white. It lazily blinked its eyes as if it had not a care in the world.",
         "Praesent varius justo sed ex interdum, a ultrices velit commodo. Vestibulum facilisis nulla non aliquam. Nulla facilisi. Sed tincidunt vulputate eleifend. Maecenas quis congue justo.Nulla facilisi. Sed tincidunt vulputate eleifend. Maecenas quis congue justo",
     ],
     [
@@ -26,10 +26,11 @@ var array =  [
 var minutes = 1
 var level = "Medium"
 var text = ""
-var count = 0
-var count1 = 0
+var count = 0 // increament for every key
+var count1 = 0 // increament while space key is pressed
 var wrongWords = 0
-var bool = true
+var bool = true // to prevent doublespaing
+// var bool1 = true // to load content for first time
 var WPM = 0
 var acc = 0
 var totalTyped = 0
@@ -50,6 +51,7 @@ function loadContent(){
     var selectLevelBool = true
 
     for(let i = 0; i < options.length; i++){
+
         if(options[i].selected){
             if(selectLevelBool){
                 minutes = options[i].innerText.split(" ")[0]
@@ -90,9 +92,9 @@ function loadContent(){
 
         var span = document.createElement("span")
         span.className = "displayElements"
-        span.innerText = text[i] + " "
+        span.innerText = " " + text[i] + " "
         if(i == 0){
-            span.style.color = "lightblue"
+            span.style.backgroundColor = "lightblue"
         }
         document.getElementById("displayPara").append(span)
         
@@ -100,10 +102,8 @@ function loadContent(){
 
     document.getElementById("displayMinutes").innerText = minutes-1 + " :"
 
-    document.getElementById("totalTyped").style.visibility = "hidden"
-    document.getElementById("accurecy").style.visibility = "hidden"
-    document.getElementById("WPM").style.visibility = "hidden"
-    document.getElementById("typos").style.visibility = "hidden"
+    document.getElementById("resultDiv").style.visibility = "hidden"
+
     document.getElementById("timeUp").style.visibility = "hidden"
     document.getElementById("displaySeconds").style.backgroundColor = "white"
     document.getElementById("displaySeconds").innerText = "60"
@@ -148,8 +148,10 @@ function run1(){
 }
 
 function run(){
+    console.log(count1)
 
-    document.getElementsByTagName("span")[count1+1].style.color = "lightblue"
+    document.getElementsByTagName("span")[count1+1].style.backgroundColor = "lightblue"
+
     var widthofSpan = document.getElementsByTagName("span")[count1].offsetWidth
     
     var input = document.getElementById("input").value
@@ -189,7 +191,7 @@ function run(){
     document.getElementById("mainResult").append(" ")
 
     document.getElementById("input").value = ""
-    document.getElementsByTagName("span")[count1].style.color = "black"
+    document.getElementsByTagName("span")[count1].style.backgroundColor = "white"
 
     if(input){
         count1++
@@ -202,13 +204,16 @@ function run(){
 function start(){
 
     var timeout = minutes * 60200
-    // var timeout = 5000
+    // var timeout = 2000
     setTimeout(() => {
         run()
 
         displayResults()
         createBars()
+        displayBar()
         clearInterval(timer)
+
+        document.getElementById("endSound").play()
 
     }, timeout);
 
@@ -219,17 +224,12 @@ function displayResults(){
     var div1 = document.getElementById("totalTyped")
     var div3 = document.getElementById("accurecy")
     var div2 = document.getElementById("WPM")
-    var div4 = document.getElementById("typos")
 
-    div1.style.visibility = "visible"
-    div2.style.visibility = "visible"
-    div3.style.visibility = "visible"
-    div4.style.visibility = "visible"
+    div1.innerText = count1
+    div2.innerText = (WPM / minutes)
+    div3.innerText = Math.floor((WPM/count1)*100) 
 
-    div1.innerText = "Total Typed " + count1
-    div2.innerText = "WPM " + (WPM / minutes)
-    div3.innerText =  "Accurecy " + Math.floor((WPM/count1)*100) 
-    div4.innerText =  "Typos " + (count1 - WPM)
+    document.getElementById("resultDiv").style.visibility = "visible"
 
     document.getElementById("displaySeconds").innerText = "0"
     document.getElementById("timeUp").style.visibility = "visible"
@@ -249,7 +249,7 @@ function startTimer() {
     var dummyMinutes = minutes
     timer = setInterval(() => {
         document.getElementById("displaySeconds").innerText = Seconds
-        document.getElementById("displayMinutes").innerText = (dummyMinutes - 1)
+        document.getElementById("displayMinutes").innerText = (dummyMinutes - 1) +" :"
         if(Seconds == 0){
             Seconds = 59
             dummyMinutes--
@@ -269,46 +269,17 @@ if(JSON.parse(localStorage.getItem("typingHistory")) != null){
     displayBar()
 }
 
-function createBars(){
+
+function createBars(){             
     const now = new Date();
 
     const nowDate = now.toLocaleDateString().split("/").splice(0,2).join("/")
     const nowTime = now.toLocaleTimeString().split(":").splice(0,2).join(":")
     const AmPm = now.toLocaleTimeString().split(" ")[1]
 
-    const resultTime = nowDate + ", T " + nowTime + " " + AmPm
+    const resultTime = nowDate + "," + nowTime + " " + AmPm
 
-    var width = WPM * 2
     var sub = [Math.floor(WPM / minutes), resultTime]
-
-    var div = document.createElement("div")
-    div.id = "progressInnerDiv"
-    div.className = "progress"
-    div.style.height = "45px"
-
-    var div1 = document.createElement("div")
-
-    div1.className = "progress-bar"
-    div1.setAttribute("role","progressbar")
-    div1.setAttribute("aria-valuemin", "0")
-    div1.setAttribute("aria-valuemax", "50")
-
-
-    div1.style.width = width + "%"
-    div1.innerText = Math.floor(WPM / minutes)
-
-    console.log(Math.floor(WPM/ minutes), WPM, minutes)
-
-    div.append(div1)
-
-    var span = document.createElement("span")
-    span.innerText = resultTime
-    span.style.marginLeft = "auto"
-
-    div.append(span)
-    document.getElementById("progressBarDiv").append(div)
-    document.getElementById("progressBarDiv").scrollTop = document.getElementById("progressBarDiv").scrollHeight
-
 
     if(JSON.parse(localStorage.getItem("typingHistory")) == null){
         localStorage.setItem('typingHistory', JSON.stringify([]));
@@ -323,25 +294,26 @@ function createBars(){
 
 
 function displayBar(){
+    document.getElementById("progressBarDiv").innerHTML = " "
+
+    const now = new Date();
 
     var arr = JSON.parse(localStorage.getItem("typingHistory"));
 
     for(let i = 0; i < arr.length; i++){
+
+        const nowDate = now.toLocaleDateString().split("/").splice(0,2).join("/")
 
         var width = arr[i][0] * 2
         
         var div = document.createElement("div")
         div.id = "progressInnerDiv"
         div.className = "progress"
-        div.style.height = "45px"
     
         var div1 = document.createElement("div")
     
         div1.className = "progress-bar"
         div1.setAttribute("role","progressbar")
-        div1.setAttribute("aria-valuemin", "0")
-        div1.setAttribute("aria-valuemax", "50")
-    
     
         div1.style.width = width + "%"
         div1.innerText = arr[i][0]
@@ -349,7 +321,15 @@ function displayBar(){
         div.append(div1)
     
         var span = document.createElement("span")
-        span.innerText = arr[i][1]
+
+        if(nowDate == arr[i][1].split(",")[0]){
+            span.innerText = arr[i][1].split(",")[1]
+            
+        }else{
+            span.innerText = arr[i][1].split(",")[0]
+        }
+        
+        
         span.style.marginLeft = "auto"
     
         div.append(span)
@@ -358,6 +338,6 @@ function displayBar(){
         
 
     }
-    localStorage.setItem('typingHistory', JSON.stringify(arr));
+    // localStorage.setItem('typingHistory', JSON.stringify(arr));
     
 }

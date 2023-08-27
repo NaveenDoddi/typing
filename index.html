@@ -12,8 +12,8 @@
 <body onload="loadContent()">
     <div id="mainDiv">
 
-        <h1 class="text-center font-weight-bold">Typing Master</h1>
-        <h2 class="text-center">Check your typing skills in a minute</h2>
+        <h1 class="text-center"><bold class="bg-dark p-2 rounded-pill"> Typing Master </bold></h1>
+        <h2 class="text-center">Check your typing skills in a minute <img src="thumb.jpg" alt=""></h2>
         <div id="complete">
             <div id="left">
                 <h5 style="background-color: orange;">Timer</h5>
@@ -28,7 +28,7 @@
                 <div id="selectLevel">
                     <h5 style="background-color: orange;">Select Text</h5>
                     <div>
-                        <select class="form-select bg-info" aria-label="Default select example">
+                        <select class="form-select bg-info text-center" aria-label="Default select example">
                             <option selected>1 Minute</option>
                             <option value="2 Minute">2 Minutes</option>
                             <option value="5 Minute">5 Minutes</option>
@@ -36,7 +36,7 @@
                         </select>
                     </div>
                     <div>
-                        <select class="form-select bg-info" aria-label="Default select example">
+                        <select class="form-select bg-info text-center" aria-label="Default select example">
                             <option value="Easy">Easy</option>
                             <option selected value="Medium">Medium</option>
                             <option value="Hard">Hard</option>
@@ -57,16 +57,21 @@
             </div>
 
             <div id="right">
-
-                <div id="resultDiv" class="w-100 bottom-0">
-                    <h5 style="background-color: orange;">Result</h5>
-                    <div class="bg-info text-white" id="totalTyped"></div>
-                    <div class="bg-success text-white" id="WPM"></div>
-                    <div class="bg-danger text-white" id="typos"></div>
-                    <div class="bg-secondary text-white" id="accurecy"></div>
+                <h5 style="background-color: orange;">Result</h5>
+                <div id="resultDiv" class="w-100 bottom-0 p-1">
+                    
+                    <div>
+                        <div class="bg-info text-white" id="totalTyped" style="float: left"></div><div id="totalTypedT">total typed</div><div class="text-center h3">X</div>
+                    </div>
+                    <div>
+                        <div class="bg-secondary text-white" id="accurecy" style="float: left"></div><div id="accurecyT">accurecy</div><div class="text-center h3">=</div>
+                    </div>
+                    <div>
+                        <div class="bg-success text-white " id="WPM" style="float: left"></div><div id="WPMT">WPM</div>
+                    </div>
                 </div>
 
-                <h5 class="text-center bg-dark text-white">Previous Tests</h5>
+                <h5 class="text-center text-dark" style="background-color: orange;">Previous Tests</h5>
                 <div id="progressBarDiv"></div>
                 
             </div>
@@ -74,6 +79,7 @@
         
     </div>
 <audio src="beepSound.wav" id="sound"></audio>
+<audio src="Kaun Banega Crorepati - endTest.mp3" id="endSound"></audio>
 </body>
     <script src="script.js"></script>
 </html>

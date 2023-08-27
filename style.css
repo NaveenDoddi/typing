@@ -1,7 +1,7 @@
 #input{
     border: none;
     outline: none;
-    width: 140px;
+    width: 150px;
     color: yellowgreen;
 
 }
@@ -9,24 +9,41 @@ input{
     width: 155px;
 
 }
+img{
+    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+}
 
 #totalTyped,#WPM, #accurecy, #typos{
 
-    visibility: hidden;
-
-    border: 1px solid black;
-    height: 69px;
-
+    border-radius: 100%;
+    height: 65px;
+    width: 80px;
     display: flex;
     justify-content: center;    
     align-items: center;
     font-size: larger;
+    box-shadow: 2px 2px 2px 2px rgb(40, 38, 38);
     
 }
- #resultDiv{
-    position: relative;
-    top: 0%;
- }
+
+
+#mainDiv{
+    font-family: cursive, sans-serif;
+    padding: 1%;
+
+}
+
+#totalTypedT, #WPMT, #accurecyT{
+
+    height: 65px;
+    font-size: larger;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+}
+
 .progress{
     padding: 8px;
     
@@ -35,14 +52,12 @@ input{
     text-align: right;
 }
 
-/* #left{
-    display: flex;
-    justify-content: center;    
-    align-items: center;
-} */
+
 .displayElements,.typedElements,#input{
     padding: 0.5%;
     font-size: xx-large;
+    border-radius: 20%;
+    /* text-align: center; */
     
 }
 #selectLevel{
@@ -55,14 +70,13 @@ input{
 }
 #left, #right{
     width: 20%;
+    height: 620px;
     border: 2px solid black;
 }
 #center{
     width: 60%;
 }
-#mainDiv{
-    padding: 1%;
-}
+
 #complete{
     display: flex;
 }
@@ -80,6 +94,8 @@ input{
 }
 h5{
     text-align: center;
+    background-color: orange;
+    padding: 5px;
 }
 
 h1{
@@ -105,6 +121,9 @@ h1{
     align-items: center;
     border: 2px solid black;
     border-radius: 100%;
+
+    box-shadow: 2px 2px 2px 2px rgb(40, 38, 38);
+
 }
 
 #progressInnerDiv{
@@ -112,12 +131,12 @@ h1{
     justify-content: space-between;
     align-items: center;
     border: 1px solid #ccc;
-    padding: 10px;
     height : 45px;
     /* overflow: ; */
 }
 #progressBarDiv{
-    height: 275px;
+    height: 245px;
+    padding: 3px;
     overflow: scroll;
     /* scroll-top */
 }
