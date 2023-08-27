@@ -129,7 +129,7 @@ function keypressed(event){
     }
 }
 
-function run1(){
+function run1(){ // calls for every key pressed
 
     if(count == 0){
         start()
@@ -147,7 +147,7 @@ function run1(){
     count++
 }
 
-function run(){
+function run(){ // call when space key pressed
     console.log(count1)
 
     document.getElementsByTagName("span")[count1+1].style.backgroundColor = "lightblue"
@@ -172,7 +172,6 @@ function run(){
         }else{
             
         }
-        // wrongWords++
 
         document.getElementById("sound").pause()
         document.getElementById("sound").currentTime = 0.2;
@@ -338,6 +337,5 @@ function displayBar(){
         
 
     }
-    // localStorage.setItem('typingHistory', JSON.stringify(arr));
     
 }
