@@ -41,6 +41,8 @@ let timer // seconds function
 
 function loadContent(){
 
+    setingValuesFor1Time()
+
     document.getElementById("displayPara").innerHTML = ""
     document.getElementById("mainResult").innerHTML = ""
     document.getElementById("input").style.visibility = "visible"
@@ -108,6 +110,8 @@ function loadContent(){
     document.getElementById("displaySeconds").style.backgroundColor = "white"
     document.getElementById("displaySeconds").innerText = "60"
 
+    // totalTime()
+
     count1 = 0
     count = 0
     wrongWords = 0
@@ -148,7 +152,7 @@ function run1(){ // calls for every key pressed
 }
 
 function run(){ // call when space key pressed
-    console.log(count1)
+    // console.log(count1)
 
     document.getElementsByTagName("span")[count1+1].style.backgroundColor = "lightblue"
 
@@ -211,6 +215,7 @@ function start(){
         createBars()
         displayBar()
         clearInterval(timer)
+        totalTime(minutes)
 
         document.getElementById("endSound").play()
 
@@ -226,7 +231,7 @@ function displayResults(){
 
     div1.innerText = count1
     div2.innerText = (WPM / minutes)
-    div3.innerText = Math.floor((WPM/count1)*100) 
+    div3.innerText = Math.floor((WPM/count1)*100)
 
     document.getElementById("resultDiv").style.visibility = "visible"
 
@@ -246,6 +251,7 @@ function scroll() {
 function startTimer() {
     Seconds = 59
     var dummyMinutes = minutes
+
     timer = setInterval(() => {
         document.getElementById("displaySeconds").innerText = Seconds
         document.getElementById("displayMinutes").innerText = (dummyMinutes - 1) +" :"
@@ -269,7 +275,8 @@ if(JSON.parse(localStorage.getItem("typingHistory")) != null){
 }
 
 
-function createBars(){             
+
+function createBars(){ 
     const now = new Date();
 
     const nowDate = now.toLocaleDateString().split("/").splice(0,2).join("/")
@@ -292,7 +299,41 @@ function createBars(){
 }
 
 
+function totalTime(value){
+
+    const now = new Date();
+    const nowDate = now.toLocaleDateString().split("/").splice(0,2).join("/")
+    
+    var totalTimeSpend = JSON.parse(localStorage.getItem("timeSpendOnTyping"));
+
+    console.log(totalTimeSpend.split("+"))
+
+    var totalTimeSpend1 = (totalTimeSpend.split("+")[0]) 
+    totalTimeSpend1 = Number(totalTimeSpend1) + value
+
+    var totalTimeSpend2 = totalTimeSpend.split("+")[1]
+
+    document.getElementById("totalTime").innerText = totalTimeSpend1
+
+    if(totalTimeSpend1 >= 5){
+        document.getElementById("totalTime").className = "bg-success h3 p-1 rounded-circle"
+    }
+
+
+    if(totalTimeSpend2 == nowDate){
+        localStorage.setItem("timeSpendOnTyping",JSON.stringify(totalTimeSpend1 + "+" + nowDate));
+    }else{
+        localStorage.setItem("timeSpendOnTyping", JSON.stringify("0+"+nowDate));
+    }
+
+
+}
+
+
 function displayBar(){
+
+    totalTime(0)
+
     document.getElementById("progressBarDiv").innerHTML = " "
 
     const now = new Date();
@@ -338,4 +379,18 @@ function displayBar(){
 
     }
     
+}
+
+
+
+
+function setingValuesFor1Time(){
+    if(JSON.parse(localStorage.getItem("timeSpendOnTyping")) == null){
+        const now = new Date();
+    
+        const nowDate = now.toLocaleDateString().split("/").splice(0,2).join("/")
+    
+        localStorage.setItem("timeSpendOnTyping", JSON.stringify("0+" + nowDate));
+        console.log("ldkj")
+    }
 }

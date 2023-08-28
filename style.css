@@ -60,6 +60,10 @@ img{
 
 }
 
+#totalTime{
+    box-shadow: 2px 2px 2px 2px rgb(40, 38, 38);
+}
+
 #selectLevel{
     /* padding-bottom: 20%; */
     display:flex;
@@ -102,7 +106,6 @@ input{
 #displayPara::-webkit-scrollbar, #inputField::-webkit-scrollbar, #progressBarDiv::-webkit-scrollbar {
     display: none;
 }
-
 
 
 #totalTyped,#WPM, #accurecy, #typos{
