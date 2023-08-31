@@ -24,8 +24,9 @@
                     
                 </div>
                 <h6 class="bg-danger text-center text-white" id="timeUp">timeUp!</h6>
-                <div class="text-center p-2"> Time you spend on Typing Master today <br><small class="h3 bg-danger p-1 rounded-circle" id="totalTime">0</small></div>
+                <div class="text-center p-2 mt-3 border"> Time you spend on Typing Master today <br><small class="h3 bg-danger p-1 rounded-circle" id="totalTime">0</small></div>
 
+                <button class="btn w-100 mt-4 border" id="mute" onclick="mute(this)">Mute</button>
                 <div id="selectLevel">
                     <h5 style="background-color: orange;">Select Text</h5>
                     <div>
@@ -45,7 +46,7 @@
                     </div>
                     
                 </div>
-                <button onclick="loadContent()" class="w-100 btn btn-lg btn-dark text-white" id="startBtn">Start</button>
+                <button onclick="startBtn(this)"  class="w-100 btn btn-lg btn-dark text-white" id="startBtn">Start</button>
                 
             </div>
 
@@ -58,7 +59,7 @@
             </div>
 
             <div id="right">
-                <h5 style="background-color: orange;">Result</h5>
+                <h5 style="background-color: orange;">Your Test Score</h5>
                 <div id="resultDiv" class="w-100 bottom-0 p-1">
                     
                     <div>

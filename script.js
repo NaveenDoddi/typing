@@ -37,6 +37,7 @@ var totalTyped = 0
 var letters = 0
 var Seconds = 59
 let timer // seconds function
+let timeoutId;
 
 
 function loadContent(){
@@ -136,10 +137,13 @@ function keypressed(event){
 function run1(){ // calls for every key pressed
 
     if(count == 0){
-        start()
+        
         startTimer()
+        setTimeout(endTest, minutes * 60200)
+        // setTimeout(endTest, 10000)
+        // endTest(10000)
         document.getElementById("timeUp").innerText = "test has been Ended"
-        document.getElementById("timeUp").addEventListener
+        document.getElementById("startBtn").innerText = "End"
         
     }
 
@@ -152,7 +156,6 @@ function run1(){ // calls for every key pressed
 }
 
 function run(){ // call when space key pressed
-    // console.log(count1)
 
     document.getElementsByTagName("span")[count1+1].style.backgroundColor = "lightblue"
 
@@ -204,11 +207,10 @@ function run(){ // call when space key pressed
     
 }
 
-function start(){
+function endTest(timeout){
 
-    var timeout = minutes * 60200
-    // var timeout = 2000
-    setTimeout(() => {
+    timeoutId = setTimeout(() => {
+
         run()
 
         displayResults()
@@ -306,7 +308,7 @@ function totalTime(value){
     
     var totalTimeSpend = JSON.parse(localStorage.getItem("timeSpendOnTyping"));
 
-    console.log(totalTimeSpend.split("+"))
+    // console.log(totalTimeSpend.split("+"))
 
     var totalTimeSpend1 = (totalTimeSpend.split("+")[0]) 
     totalTimeSpend1 = Number(totalTimeSpend1) + value
@@ -393,4 +395,30 @@ function setingValuesFor1Time(){
         localStorage.setItem("timeSpendOnTyping", JSON.stringify("0+" + nowDate));
         console.log("ldkj")
     }
+}
+
+function mute(click){
+    var x = document.getElementById("endSound");
+    console.log(x.muted)
+    if(x.muted){
+        click.innerText = "Mute"
+        x.muted = false
+    }else{
+        click.innerText = "Unmute"
+        x.muted = true
+    }
+    
+}
+
+function startBtn(click){
+
+    if(click.innerText == "Start Again" || click.innerText == "Start"){
+        loadContent()
+    }else{
+        
+        clearTimeout(timeoutId)
+        endTest(0)
+        click.innerText = "Start Again"
+    }
+    
 }
