@@ -1,7 +1,8 @@
 
 h1{
-    text-decoration: underline;
+    /* text-decoration: underline; */
     color: orange;
+
 }
 h5{
     text-align: center;
@@ -14,12 +15,15 @@ img{
     height: 40px;
     width: 40px;
 }
+#speedometer,#timerImg{
+    height: 30px;
+    width: 30px;
+}
 
 
 #mainDiv{
     font-family: cursive, sans-serif;
     padding: 1%;
-
 }
 
 #complete{
@@ -107,6 +111,15 @@ input{
     display: none;
 }
 
+#resultDiv{
+    font-size: large;
+    font-weight: 1000;
+    background-size: cover;
+    /* background-repeat: no-repeat; */
+    /* background-position:10%; */
+    /* opacity: 0.5; */
+    background-image: url('viking.png');
+}
 
 #totalTyped,#WPM, #accurecy, #typos{
 
@@ -119,6 +132,7 @@ input{
     font-size: larger;
     box-shadow: 2px 2px 2px 2px rgb(40, 38, 38);
     
+    
 }
 
 
@@ -127,7 +141,7 @@ input{
     height: 65px;
     font-size: larger;
     display: flex;
-    justify-content: center;    
+    justify-content: right;    
     align-items: center;
 }
 

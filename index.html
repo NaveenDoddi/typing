@@ -12,7 +12,7 @@
 <body onload="loadContent()">
     <div id="mainDiv">
 
-        <h1 class="text-center"><bold class="bg-dark p-2 rounded-pill"> Typing Master </bold></h1>
+        <h1 class="text-center"><bold class="bg-dak p-2 rounded-pill"> Typing Master <img src="viking3.jpg" alt=""></bold></h1>
         <h2 class="text-center">Check your typing skills in a minute <img src="thumb.jpg" alt="logo"></h2>
         <div id="complete">
             <div id="left">
@@ -24,9 +24,12 @@
                     
                 </div>
                 <h6 class="bg-danger text-center text-white" id="timeUp">timeUp!</h6>
-                <div class="text-center p-2 mt-3 border"> Time you spend on Typing Master today <br><small class="h3 bg-danger p-1 rounded-circle" id="totalTime">0</small></div>
+                <div >
+                    <div class="text-center p-2 mt-3 border"> Time you spend on Typing Master today <br><small class="h3 bg-danger p-1 rounded-circle" id="totalTime">0</small></div>
 
-                <button class="btn w-100 mt-4 border" id="mute" onclick="mute(this)">Mute</button>
+                    <button class="btn w-100 mt-4 border" id="mute" onclick="mute(this)">Mute</button>
+                </div>
+
                 <div id="selectLevel">
                     <h5 style="background-color: orange;">Select Text</h5>
                     <div>
@@ -59,14 +62,14 @@
             </div>
 
             <div id="right">
-                <h5 style="background-color: orange;">Your Test Score</h5>
-                <div id="resultDiv" class="w-100 bottom-0 p-1">
+                <h5 style="background-color: orange;">Your Score <img src="speedometer.jpg" alt="" id="speedometer"></h5>
+                <div id="resultDiv" class="w-100 bottom-0 p-1 text-dark">
                     
                     <div>
-                        <div class="bg-info text-white" id="totalTyped" style="float: left"></div><div id="totalTypedT">total typed</div><div class="text-center h3">X</div>
+                        <div class="bg-info text-white" id="totalTyped" style="float: left"></div><div id="totalTypedT">total typed</div><div class="text-end h3">X</div>
                     </div>
                     <div>
-                        <div class="bg-secondary text-white" id="accurecy" style="float: left"></div><div id="accurecyT">accurecy</div><div class="text-center h3">=</div>
+                        <div class="bg-secondary text-white" id="accurecy" style="float: left"></div><div id="accurecyT">accurecy</div><div class="text-end h3">=</div>
                     </div>
                     <div>
                         <div class="bg-success text-white " id="WPM" style="float: left"></div><div id="WPMT">WPM</div>
