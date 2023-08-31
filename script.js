@@ -139,8 +139,8 @@ function run1(){ // calls for every key pressed
     if(count == 0){
         
         startTimer()
-        // setTimeout(endTest, minutes * 60200)
-        setTimeout(endTest, 1000)
+        setTimeout(endTest, minutes * 60200)
+        // setTimeout(endTest, 1000)
         // endTest(10000)
         document.getElementById("timeUp").innerText = "test has been Ended"
         // document.getElementById("startBtn").innerText = "End"
