@@ -143,7 +143,7 @@ function run1(){ // calls for every key pressed
         // setTimeout(endTest, 10000)
         // endTest(10000)
         document.getElementById("timeUp").innerText = "test has been Ended"
-        document.getElementById("startBtn").innerText = "End"
+        // document.getElementById("startBtn").innerText = "End"
         
     }
 
@@ -220,6 +220,7 @@ function endTest(timeout){
         totalTime(minutes)
 
         document.getElementById("endSound").play()
+        document.getElementById("startbtn").innerText = "Start Again"
 
     }, timeout);
 
@@ -315,17 +316,18 @@ function totalTime(value){
 
     var totalTimeSpend2 = totalTimeSpend.split("+")[1]
 
-    document.getElementById("totalTime").innerText = totalTimeSpend1
+    if(totalTimeSpend2 == nowDate){
+        localStorage.setItem("timeSpendOnTyping",JSON.stringify(totalTimeSpend1 + "+" + nowDate));
+        document.getElementById("totalTime").innerText = totalTimeSpend1
+    }else{
+        localStorage.setItem("timeSpendOnTyping", JSON.stringify("0+"+nowDate));
+        document.getElementById("totalTime").innerText = 0
+    }
+
+    
 
     if(totalTimeSpend1 >= 5){
         document.getElementById("totalTime").className = "bg-success h3 p-1 rounded-circle"
-    }
-
-
-    if(totalTimeSpend2 == nowDate){
-        localStorage.setItem("timeSpendOnTyping",JSON.stringify(totalTimeSpend1 + "+" + nowDate));
-    }else{
-        localStorage.setItem("timeSpendOnTyping", JSON.stringify("0+"+nowDate));
     }
 
 
@@ -383,9 +385,6 @@ function displayBar(){
     
 }
 
-
-
-
 function setingValuesFor1Time(){
     if(JSON.parse(localStorage.getItem("timeSpendOnTyping")) == null){
         const now = new Date();
@@ -410,15 +409,15 @@ function mute(click){
     
 }
 
-function startBtn(click){
+// function startBtn(click){
 
-    if(click.innerText == "Start Again" || click.innerText == "Start"){
-        loadContent()
-    }else{
+//     if(click.innerText == "Start Again" || click.innerText == "Start"){
+//         loadContent()
+//     }else{
         
-        clearTimeout(timeoutId)
-        endTest(0)
-        click.innerText = "Start Again"
-    }
+//         clearTimeout(timeoutId)
+//         endTest(0)
+//         click.innerText = "Start Again"
+//     }
     
-}
+// }
