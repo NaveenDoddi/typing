@@ -139,11 +139,11 @@ function run1(){ // calls for every key pressed
     if(count == 0){
         
         startTimer()
-        setTimeout(endTest, minutes * 60200)
-        // setTimeout(endTest, 1000)
-        // endTest(10000)
+        timeoutId = setTimeout(endTest, minutes * 60200)
+        // timeoutId = setTimeout(endTest, 10000)
+        
         document.getElementById("timeUp").innerText = "test has been Ended"
-        // document.getElementById("startBtn").innerText = "End"
+        document.getElementById("startBtn").innerText = "End"
         
     }
 
@@ -207,24 +207,33 @@ function run(){ // call when space key pressed
     
 }
 
-function endTest(timeout){
+function endTest(){
 
-    timeoutId = setTimeout(() => {
-
-        run()
-
-        displayResults()
-        createBars()
-        displayBar()
-        clearInterval(timer)
-        totalTime(minutes)
-
-        document.getElementById("endSound").play()
-        document.getElementById("startbtn").innerText = "Start Again"
-
-    }, timeout);
+    run()
+    displayResults()
+    createBars()
+    displayBar()
+    clearInterval(timer)
+    totalTime(minutes)
+    document.getElementById("endSound").play()
+    document.getElementById("startBtn").innerText = "Start Again"
 
 }
+
+
+function startBtn(click){
+
+    if(click.innerText == "Start Again" || click.innerText == "Start"){
+        loadContent()
+    }else{
+        totalTime(-1)
+        clearTimeout(timeoutId)
+        endTest()
+        click.innerText = "Start Again"
+    }
+    
+}
+
 
 function displayResults(){
 
@@ -398,7 +407,7 @@ function setingValuesFor1Time(){
 
 function mute(click){
     var x = document.getElementById("endSound");
-    console.log(x.muted)
+    // console.log(x.muted)
     if(x.muted){
         click.innerText = "Mute"
         x.muted = false
@@ -409,15 +418,3 @@ function mute(click){
     
 }
 
-// function startBtn(click){
-
-//     if(click.innerText == "Start Again" || click.innerText == "Start"){
-//         loadContent()
-//     }else{
-        
-//         clearTimeout(timeoutId)
-//         endTest(0)
-//         click.innerText = "Start Again"
-//     }
-    
-// }
