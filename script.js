@@ -406,15 +406,22 @@ function setingValuesFor1Time(){
 }
 
 function mute(click){
+    click.innerHTML = ""
     var x = document.getElementById("endSound");
-    // console.log(x.muted)
+    var image = document.createElement("img")
+
     if(x.muted){
-        click.innerText = "Mute"
+        
+        image.src = "icons8-mute-50.png"
+        click.innerText = " Mute "
         x.muted = false
     }else{
-        click.innerText = "Unmute"
+        
+        image.src = "icons8-sound-50.png"
+        click.innerText = " Sound "
         x.muted = true
     }
+    click.append(image)
     
 }
 
