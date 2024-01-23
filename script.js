@@ -213,8 +213,9 @@ function endTest(){
     displayResults()
     createBars()
     displayBar()
+    clearTimeout(timeoutId)
     clearInterval(timer)
-    totalTime(minutes)
+    // totalTime(minutes)
     document.getElementById("endSound").play()
     document.getElementById("startBtn").innerText = "Start Again"
 
@@ -226,7 +227,7 @@ function startBtn(click){
     if(click.innerText == "Start Again" || click.innerText == "Start"){
         loadContent()
     }else{
-        totalTime(-1)
+        // totalTime(-1)
         clearTimeout(timeoutId)
         endTest()
         click.innerText = "Start Again"
@@ -254,7 +255,6 @@ function displayResults(){
 
 }
 
-
 function scroll() {
     var div = document.getElementById("displayPara");
     div.scrollTop += 47;
@@ -267,7 +267,7 @@ function startTimer() {
     timer = setInterval(() => {
         document.getElementById("displaySeconds").innerText = Seconds
         document.getElementById("displayMinutes").innerText = (dummyMinutes - 1) +" :"
-        if(Seconds == 0){
+        if(Seconds == 0 && dummyMinutes != 1){
             Seconds = 59
             dummyMinutes--
         }
@@ -311,41 +311,38 @@ function createBars(){
 }
 
 
-function totalTime(value){
+// function totalTime(value){
 
-    const now = new Date();
-    const nowDate = now.toLocaleDateString().split("/").splice(0,2).join("/")
+//     const now = new Date();
+//     const nowDate = now.toLocaleDateString().split("/").splice(0,2).join("/")
     
-    var totalTimeSpend = JSON.parse(localStorage.getItem("timeSpendOnTyping"));
+//     var totalTimeSpend = JSON.parse(localStorage.getItem("timeSpendOnTyping"));
 
-    // console.log(totalTimeSpend.split("+"))
+//     // console.log(totalTimeSpend.split("+"))
 
-    var totalTimeSpend1 = (totalTimeSpend.split("+")[0]) 
-    totalTimeSpend1 = Number(totalTimeSpend1) + value
+//     var totalTimeSpend1 = (totalTimeSpend.split("+")[0]) 
+//     totalTimeSpend1 = Number(totalTimeSpend1) + value
 
-    var totalTimeSpend2 = totalTimeSpend.split("+")[1]
+//     var totalTimeSpend2 = totalTimeSpend.split("+")[1]
 
-    if(totalTimeSpend2 == nowDate){
-        localStorage.setItem("timeSpendOnTyping",JSON.stringify(totalTimeSpend1 + "+" + nowDate));
-        document.getElementById("totalTime").innerText = totalTimeSpend1
-    }else{
-        localStorage.setItem("timeSpendOnTyping", JSON.stringify("0+"+nowDate));
-        document.getElementById("totalTime").innerText = 0
-    }
+//     if(totalTimeSpend2 == nowDate){
+//         localStorage.setItem("timeSpendOnTyping",JSON.stringify(totalTimeSpend1 + "+" + nowDate));
+//         document.getElementById("totalTime").innerText = totalTimeSpend1
+//     }else{
+//         localStorage.setItem("timeSpendOnTyping", JSON.stringify("0+" + nowDate));
+//         document.getElementById("totalTime").innerText = 0
+//     }
 
-    
-
-    if(totalTimeSpend1 >= 5){
-        document.getElementById("totalTime").className = "bg-success h3 p-1 rounded-circle"
-    }
+//     if(totalTimeSpend1 >= 5){
+//         document.getElementById("totalTime").className = "bg-success h3 p-1 rounded-circle"
+//     }
 
 
-}
+// }
 
 
 function displayBar(){
 
-    totalTime(0)
 
     document.getElementById("progressBarDiv").innerHTML = " "
 
@@ -401,23 +398,22 @@ function setingValuesFor1Time(){
         const nowDate = now.toLocaleDateString().split("/").splice(0,2).join("/")
     
         localStorage.setItem("timeSpendOnTyping", JSON.stringify("0+" + nowDate));
-        console.log("ldkj")
     }
 }
 
 function mute(click){
     click.innerHTML = ""
     var x = document.getElementById("endSound");
-    var image = document.createElement("img")
+    var image = document.createElement("i")
 
     if(x.muted){
         
-        image.src = "icons8-mute-50.png"
+        image.className = "fa-solid fa-volume-xmark"
         click.innerText = " Mute "
         x.muted = false
     }else{
         
-        image.src = "icons8-sound-50.png"
+        image.className = "fa-solid fa-volume-high"
         click.innerText = " Sound "
         x.muted = true
     }

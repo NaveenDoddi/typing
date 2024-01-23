@@ -7,15 +7,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/accd26a21f.js" crossorigin="anonymous"></script><!-- icons -->
+
     <title>Typing Test</title>
 </head>
 <body onload="loadContent()">
     <div id="mainDiv">
 
-        <h1 class="text-center"><bold class="bg-dark p-2 rounded-pill"> Typing Master <img id="logo" src="viking3.jpg" alt=""></bold></h1>
-        <h2 class="text-center">Check your typing skills in a minute <img src="thumb.jpg" alt="logo"></h2>
+        <h3 class="text-center"><bold class="bg-dark p-2 rounded-pill"> Typing Master <img id="logo" src="viking3.jpg" alt=""></bold></h3>
+        <h6 class="text-center">Check your typing skills in a minute <img src="thumb.jpg" class="fa-bounce" alt="logo"></h6>
         <div id="complete">
-            <div id="left">
+            <div id="left" class="d-flex flex-column justify-content-between">
                 <h5 style="background-color: orange;">Timer</h5>
 
                 <div id="stopwatch">
@@ -25,9 +27,8 @@
                 </div>
                 <h6 class="bg-danger text-center text-white" id="timeUp">timeUp!</h6>
                 <div >
-                    <div class="text-center p-2 mt-3 border"> Time you spend on Typing Master today <br><small class="h3 bg-danger p-1 rounded-circle" id="totalTime">0</small></div>
+                    <!-- <div class="text-center p-2 mt-3 border"> Time you spend on Typing Master today <br><small class="h3 bg-danger p-1 rounded-circle" id="totalTime">0</small></div> -->
 
-                    <button class="btn w-100 mt-4 border" id="mute" onclick="mute(this)">Mute <img src="icons8-mute-50.png" alt=""></button>
                 </div>
 
                 <div id="selectLevel">
@@ -47,10 +48,13 @@
                             <option value="Hard">Hard</option>
                         </select>
                     </div>
+                    <button onclick="startBtn(this)" class="w-100 btn btn-lg btn-dark text-white mt-1" id="startBtn">Start</button>
+
                     
                 </div>
-                <button onclick="startBtn(this)" class="w-100 btn btn-lg btn-dark text-white" id="startBtn">Start</button>
-                
+                <button class="btn w-100 mt-4 border" id="mute" onclick="mute(this)">Mute <i class="fa-solid fa-volume-xmark"></i></button>
+
+                <p></p>
             </div>
 
             <div id="center">
@@ -63,16 +67,18 @@
 
             <div id="right">
                 <h5 style="background-color: orange;">Your Score <img src="speedometer.jpg" alt="" id="speedometer"></h5>
-                <div id="resultDiv" class="w-100 bottom-0 p-1 text-dark">
+                <div id="resultDiv" class="w-100 bottom-0 p-1 text-dark d-flex flex-column justify-content-between">
                     
-                    <div>
-                        <div class="bg-info text-white" id="totalTyped" style="float: left"></div><div id="totalTypedT">total typed</div><div class="text-end h3">X</div>
+                    <div class="d-flex justify-content-between">
+                        <div><div class="bg-info text-white fa-beat" id="totalTyped"></div></div><div id="totalTypedT"><span>TotalTyped</span></div>
                     </div>
-                    <div>
-                        <div class="bg-secondary text-white" id="accurecy" style="float: left"></div><div id="accurecyT">accurecy</div><div class="text-end h3">=</div>
+                    <div class="text-end h3">X</div>
+                    <div class="d-flex justify-content-between">
+                        <div><div class="bg-secondary text-white fa-beat" id="accurecy"></div></div><div id="accurecyT"><span>Accurecy</span></div>
                     </div>
-                    <div>
-                        <div class="bg-success text-white " id="WPM" style="float: left"></div><div id="WPMT">WPM</div>
+                    <div class="text-end h3">=</div>
+                    <div class="d-flex justify-content-between">
+                        <div><div class="bg-success text-white fa-beat" id="WPM"></div></div><div id="WPMT"><span>WPM</span></div>
                     </div>
                 </div>
 
