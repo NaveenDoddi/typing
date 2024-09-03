@@ -420,6 +420,3 @@ function mute(click){
     click.append(image)
     
 }
-
-
-
